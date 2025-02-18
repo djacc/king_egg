@@ -1,0 +1,140 @@
+[gd_scene load_steps=8 format=3 uid="uid://bwebbrnft16ff"]
+
+[ext_resource type="Texture2D" uid="uid://cri4vyrjn0ndx" path="res://Screenshot 2025-02-18 at 21.05.58.png" id="1_sdgv2"]
+[ext_resource type="Texture2D" uid="uid://i747prx7beds" path="res://Screenshot 2025-02-16 at 13.48.13.png" id="1_vi8io"]
+[ext_resource type="Script" path="res://char.gd" id="2_7li0v"]
+[ext_resource type="Texture2D" uid="uid://csry7hhujp00f" path="res://icon.svg" id="3_acxmp"]
+[ext_resource type="Script" path="res://system.gd" id="5_lcmf6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t5k1c"]
+size = Vector2(156.188, 50.683)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_184ao"]
+size = Vector2(124.121, 120.242)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Screenshot2025-02-16At13_48_16" type="Sprite2D" parent="."]
+position = Vector2(1291, 329)
+scale = Vector2(0.0529248, 1.54671)
+texture = ExtResource("1_vi8io")
+
+[node name="Screenshot2025-02-16At13_48_15" type="Sprite2D" parent="."]
+position = Vector2(607.5, 470)
+scale = Vector2(0.0194986, 3.6263)
+texture = ExtResource("1_vi8io")
+
+[node name="Screenshot2025-02-16At13_48_14" type="Sprite2D" parent="."]
+position = Vector2(76.9192, 341.5)
+scale = Vector2(0.0227342, 2.2526)
+texture = ExtResource("1_vi8io")
+
+[node name="Screenshot2025-02-16At13_48_13" type="Sprite2D" parent="."]
+position = Vector2(293, 265)
+scale = Vector2(0.0278552, 2.51903)
+texture = ExtResource("1_vi8io")
+
+[node name="ground" type="StaticBody2D" parent="."]
+position = Vector2(578, 786)
+scale = Vector2(12.7517, 10.3264)
+
+[node name="Icon" type="Sprite2D" parent="ground"]
+texture = ExtResource("1_sdgv2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ground"]
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_t5k1c")
+
+[node name="Char" type="CharacterBody2D" parent="."]
+position = Vector2(560, 421)
+scale = Vector2(0.515625, 0.515625)
+script = ExtResource("2_7li0v")
+jump_cut_multiplier = 0.3
+
+[node name="HUD" type="CanvasLayer" parent="Char"]
+
+[node name="MovementControls" type="Control" parent="Char/HUD"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Char/HUD/MovementControls"]
+layout_mode = 0
+offset_left = 710.0
+offset_top = 14.0
+offset_right = 1128.0
+offset_bottom = 245.0
+
+[node name="Speed" type="Label" parent="Char/HUD/MovementControls/VBoxContainer"]
+layout_mode = 2
+text = "speed"
+
+[node name="SpeedSlider" type="HSlider" parent="Char/HUD/MovementControls/VBoxContainer"]
+layout_mode = 2
+min_value = 100.0
+max_value = 1000.0
+value = 400.0
+
+[node name="JumpVelocity" type="Label" parent="Char/HUD/MovementControls/VBoxContainer"]
+layout_mode = 2
+text = "jump strength (- is more)"
+
+[node name="JumpVelocitySlider" type="HSlider" parent="Char/HUD/MovementControls/VBoxContainer"]
+layout_mode = 2
+min_value = -2000.0
+max_value = -100.0
+value = -800.0
+
+[node name="NormalFallSpeed" type="Label" parent="Char/HUD/MovementControls/VBoxContainer"]
+layout_mode = 2
+text = "gravity"
+
+[node name="NormalFallSpeedSlider" type="HSlider" parent="Char/HUD/MovementControls/VBoxContainer"]
+layout_mode = 2
+min_value = 500.0
+max_value = 3000.0
+value = 1800.0
+
+[node name="FallMultiplier" type="Label" parent="Char/HUD/MovementControls/VBoxContainer"]
+layout_mode = 2
+text = "increase when down"
+
+[node name="FallMultiplierSlider" type="HSlider" parent="Char/HUD/MovementControls/VBoxContainer"]
+layout_mode = 2
+min_value = 1.0
+max_value = 20.0
+value = 9.0
+
+[node name="JumpCutMultiplier" type="Label" parent="Char/HUD/MovementControls/VBoxContainer"]
+layout_mode = 2
+text = "reduce when stop jump"
+
+[node name="JumpCutMultiplierSlider" type="HSlider" parent="Char/HUD/MovementControls/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.03
+
+[node name="Icon" type="Sprite2D" parent="Char"]
+scale = Vector2(1, 1)
+texture = ExtResource("3_acxmp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Char"]
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_184ao")
+
+[node name="Camera2D" type="Camera2D" parent="Char"]
+position = Vector2(-1.93939, -279.273)
+
+[node name="System" type="Node" parent="."]
+script = ExtResource("5_lcmf6")
+
+[connection signal="value_changed" from="Char/HUD/MovementControls/VBoxContainer/SpeedSlider" to="Char" method="_on_speed_slider_value_changed"]
+[connection signal="value_changed" from="Char/HUD/MovementControls/VBoxContainer/JumpVelocitySlider" to="Char" method="_on_jump_velocity_slider_value_changed"]
+[connection signal="value_changed" from="Char/HUD/MovementControls/VBoxContainer/NormalFallSpeedSlider" to="Char" method="_on_normal_fall_speed_slider_value_changed"]
+[connection signal="value_changed" from="Char/HUD/MovementControls/VBoxContainer/FallMultiplierSlider" to="Char" method="_on_fall_multiplier_slider_value_changed"]
+[connection signal="value_changed" from="Char/HUD/MovementControls/VBoxContainer/JumpCutMultiplierSlider" to="Char" method="_on_jump_cut_multiplier_slider_value_changed"]
+[connection signal="gamecloser" from="System" to="Char" method="_on_system_gamecloser"]
