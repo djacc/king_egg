@@ -11,8 +11,13 @@ extends CharacterBody2D
 @export var acceleration_time: float = 0.07  
 @export var deceleration_time: float = 0.15 
 
+@onready var multi_cam: Camera2D = $"../multiCam"
+	
 var jumps_remaining: int = 0
 var last_horizontal_direction: int = 0  # -1 for left, 1 for right
+
+func _ready() -> void:
+	multi_cam.add_target(self)
 
 func _input(event):
 	# Track the last horizontal input direction.

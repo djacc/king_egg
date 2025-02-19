@@ -1,11 +1,13 @@
 extends RigidBody2D
 
+@onready var multi_cam: Camera2D = $"../multiCam"
+
 
 @onready var char: CharacterBody2D = $"../Char"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	multi_cam.add_target(self)
 	
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body == char:
