@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var multi_cam = $"../MultiCam"
+
 @export var speed: float = 400.0
 @export var jump_velocity: float = -800.0
 @export var normal_fall_speed: float = 1800  # Gravity (pixels per second squared)
@@ -11,12 +13,10 @@ extends CharacterBody2D
 @export var acceleration_time: float = 0.07  
 @export var deceleration_time: float = 0.15 
 
-@onready var multi_cam: Camera2D = $"../multiCam"
-	
 var jumps_remaining: int = 0
 var last_horizontal_direction: int = 0  # -1 for left, 1 for right
 
-func _ready() -> void:
+func _ready():
 	multi_cam.add_target(self)
 
 func _input(event):

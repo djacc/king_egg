@@ -11,13 +11,9 @@ config_version=5
 [application]
 
 config/name="New Game Project"
-run/main_scene="res://MainScene.tscn"
+run/main_scene="res://MainScene/MainScene.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
-
-[autoload]
-
-ConfigFileHandler="*res://config_file_handler.gd"
 
 [display]
 
@@ -58,3 +54,7 @@ respawn={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":82,"key_label":0,"unicode":114,"location":0,"echo":false,"script":null)
 ]
 }
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0.225591, 0.151836, 0.385094, 1)

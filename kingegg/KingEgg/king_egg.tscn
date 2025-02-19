@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2rtfsqltjggi"]
+[gd_scene load_steps=5 format=3 uid="uid://c0h42i7i8qocu"]
 
-[ext_resource type="Script" path="res://bounce.gd" id="1_vbjv2"]
-[ext_resource type="Texture2D" uid="uid://j5b11py3jnba" path="res://ballBlue_10.png" id="2_44auq"]
+[ext_resource type="Script" path="res://KingEgg/bounce.gd" id="1_vbjv2"]
+[ext_resource type="Texture2D" uid="uid://j5b11py3jnba" path="res://KingEgg/ballBlue_10.png" id="2_44auq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x0aeu"]
 radius = 44.0
@@ -13,6 +13,7 @@ height = 120.0
 
 [node name="KingEgg" type="RigidBody2D"]
 position = Vector2(545, 337)
+collision_layer = 3
 script = ExtResource("1_vbjv2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

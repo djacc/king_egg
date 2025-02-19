@@ -31,7 +31,6 @@ func _process(delta):
 		z = clamp(r.size.x / screen_size.x, min_zoom, max_zoom)
 	else:
 		z = clamp(r.size.y / screen_size.y, min_zoom, max_zoom)
-	print(z)
 	zoom = lerp(zoom, Vector2.ONE * 1/z, zoom_speed)
 
 func add_target(t):
