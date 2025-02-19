@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bwebbrnft16ff"]
+[gd_scene load_steps=9 format=3 uid="uid://bwebbrnft16ff"]
 
 [ext_resource type="Texture2D" uid="uid://cri4vyrjn0ndx" path="res://Screenshot 2025-02-18 at 21.05.58.png" id="1_sdgv2"]
 [ext_resource type="Texture2D" uid="uid://i747prx7beds" path="res://Screenshot 2025-02-16 at 13.48.13.png" id="1_vi8io"]
 [ext_resource type="Script" path="res://char.gd" id="2_7li0v"]
 [ext_resource type="Texture2D" uid="uid://csry7hhujp00f" path="res://icon.svg" id="3_acxmp"]
 [ext_resource type="Script" path="res://system.gd" id="5_lcmf6"]
+[ext_resource type="PackedScene" uid="uid://d2rtfsqltjggi" path="res://king_egg.tscn" id="6_ovqcc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t5k1c"]
 size = Vector2(156.188, 50.683)
@@ -42,7 +43,6 @@ scale = Vector2(12.7517, 10.3264)
 texture = ExtResource("1_sdgv2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ground"]
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_t5k1c")
 
 [node name="Char" type="CharacterBody2D" parent="."]
@@ -119,11 +119,9 @@ step = 0.01
 value = 0.03
 
 [node name="Icon" type="Sprite2D" parent="Char"]
-scale = Vector2(1, 1)
 texture = ExtResource("3_acxmp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Char"]
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_184ao")
 
 [node name="Camera2D" type="Camera2D" parent="Char"]
@@ -131,6 +129,9 @@ position = Vector2(-1.93939, -279.273)
 
 [node name="System" type="Node" parent="."]
 script = ExtResource("5_lcmf6")
+
+[node name="RigidBody2D" parent="." instance=ExtResource("6_ovqcc")]
+position = Vector2(573, 126)
 
 [connection signal="value_changed" from="Char/HUD/MovementControls/VBoxContainer/SpeedSlider" to="Char" method="_on_speed_slider_value_changed"]
 [connection signal="value_changed" from="Char/HUD/MovementControls/VBoxContainer/JumpVelocitySlider" to="Char" method="_on_jump_velocity_slider_value_changed"]
