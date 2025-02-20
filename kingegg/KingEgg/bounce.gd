@@ -2,27 +2,33 @@ extends RigidBody2D
 
 @onready var multi_cam = $"../MultiCam"
 
-@export var char_path: NodePath  # Set this to your Char node in the main scene.
+@export var char_path: NodePath
 var bouncer: RigidBody2D
 
 func _ready() -> void:
 	multi_cam.add_target(self)
-	
-	# Get the Char node using the exported path.
+	linear_damp = 0  # Disable linear damping so velocity is maintained.
 	var char_node = get_node(char_path)
 	if char_node:
-		# Retrieve the Bouncer node from the Char scene.
 		bouncer = char_node.get_node("Bouncer")  # Adjust the path if Bouncer is nested deeper.
 		if bouncer:
-			set_gravity_scale(0.3)
-			#print("Bouncer found!")
+			set_gravity_scale(0.4)
 		else:
 			print("Bouncer not found in Char!")
 	else:
 		print("Char not found!")
 
+
 func _physics_process(delta: float) -> void:
-	rotation = 0
+	pass
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body == bouncer:
+		var bounce_multiplier = 2  # Adjust this multiplier as needed.
+		var speed = abs(linear_velocity.y) * bounce_multiplier
+		var bounce_dir = Vector2(0, -1).rotated(bouncer.rotation)
+		linear_velocity = bounce_dir * speed
+
 
 #func _on_area_2d_body_entered(body: Node2D) -> void:
 	#print("Collided with: ", body.name)

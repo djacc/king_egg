@@ -3,21 +3,24 @@ extends CharacterBody2D
 @onready var multi_cam = $"../MultiCam"
 
 @export var speed: float = 400.0
-@export var jump_velocity: float = -800.0
-@export var normal_fall_speed: float = 1800  # Gravity (pixels per second squared)
-@export var fall_multiplier: float = 9
-@export var jump_cut_multiplier: float = 0.03
+@export var jump_velocity: float = -550.0
+@export var normal_fall_speed: float = 2300  # Gravity (pixels per second squared)
+@export var fall_multiplier: float = 5
+@export var jump_hold_multiplier: float = 0.5  # When jump is held, gravity is reduced (50% as strong)
 @export var air_jumps: int = 1  # Extra in-air jumps allowed
 
-# Time (in seconds) to reach full speed from 0 (acceleration) and to come to a complete stop (deceleration)
+# Time (in seconds) tao reach full speed from 0 (acceleration) and to come to a complete stop (deceleration)
 @export var acceleration_time: float = 0.07  
 @export var deceleration_time: float = 0.15 
 
 var jumps_remaining: int = 0
 var last_horizontal_direction: int = 0  # -1 for left, 1 for right
 
+@onready var king_egg = $"../KingEgg"
+
 func _ready():
 	multi_cam.add_target(self)
+	add_collision_exception_with(king_egg)
 
 func _input(event):
 	# Track the last horizontal input direction.
@@ -28,30 +31,34 @@ func _input(event):
 
 func apply_gravity(delta: float) -> void:
 	if not is_on_floor():
-		var current_gravity = Vector2(0, normal_fall_speed)
+		# Start with the normal gravity force.
+		var gravity_force: float = normal_fall_speed
+		# If the character is moving upward and the jump button is still held, reduce gravity.
+		if velocity.y < 0 and Input.is_action_pressed("jump"):
+			gravity_force *= jump_hold_multiplier
+		# If the player is holding down, apply the fall multiplier.
 		if Input.is_action_pressed("down"):
-			current_gravity *= fall_multiplier
-		velocity += current_gravity * delta
+			gravity_force *= fall_multiplier
+		# Apply gravity.
+		velocity += Vector2(0, gravity_force) * delta
 
 func handle_jump() -> void:
-	# Handle jump initiation and in-air jump
+	# Handle jump initiation and in-air jumps.
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
 			velocity.y = jump_velocity
 		elif jumps_remaining > 0:
 			velocity.y = jump_velocity
 			jumps_remaining -= 1
-
-	# Cut jump short if the jump button is released early
-	if Input.is_action_just_released("jump") and velocity.y < 0:
-		velocity.y *= jump_cut_multiplier
+	
+	# Note: The jump cut logic is removed so that releasing jump won't immediately reduce upward velocity.
 
 func update_horizontal_movement(delta: float) -> void:
 	var left_pressed = Input.is_action_pressed("left")
 	var right_pressed = Input.is_action_pressed("right")
 	var horizontal_direction: int = 0
 
-	# Determine intended direction:
+	# Determine intended horizontal direction:
 	if left_pressed and not right_pressed:
 		horizontal_direction = -1
 	elif right_pressed and not left_pressed:
@@ -59,7 +66,7 @@ func update_horizontal_movement(delta: float) -> void:
 	elif left_pressed and right_pressed:
 		horizontal_direction = last_horizontal_direction
 	
-	# If input exists, accelerate; otherwise, decelerate to 0.
+	# Accelerate or decelerate based on input.
 	if horizontal_direction != 0:
 		var target_speed: float = horizontal_direction * speed
 		var acceleration_rate: float = speed / acceleration_time
@@ -80,8 +87,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-
-
+# --- Slider callbacks (unchanged) ---
 func _on_speed_slider_value_changed(value):
 	speed = value
 	print("speed: ", value)
@@ -94,10 +100,6 @@ func _on_normal_fall_speed_slider_value_changed(value):
 func _on_fall_multiplier_slider_value_changed(value):
 	fall_multiplier = value
 	print("fall_multiplier: ", value)
-func _on_jump_cut_multiplier_slider_value_changed(value):
-	jump_cut_multiplier = value
-	print("jump_cut_multiplier: ", value)
-
 
 func _on_system_gamecloser():
 	print("==========")
@@ -105,5 +107,3 @@ func _on_system_gamecloser():
 	print("jump_velocity: ", jump_velocity)
 	print("normal_fall_speed: ", normal_fall_speed)
 	print("fall_multiplier: ", fall_multiplier)
-	print("jump_cut_multiplier: ", jump_cut_multiplier)
-	

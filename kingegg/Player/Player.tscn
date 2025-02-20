@@ -6,32 +6,34 @@
 [ext_resource type="Texture2D" uid="uid://cri4vyrjn0ndx" path="res://PlaceholderAssets/Screenshot 2025-02-18 at 21.05.58.png" id="3_rce5i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_184ao"]
-size = Vector2(50, 52)
+size = Vector2(26, 70)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nrnnx"]
-size = Vector2(157.579, 7.75757)
+size = Vector2(176, 12)
 
 [node name="Char" type="CharacterBody2D"]
 position = Vector2(560, 394)
 script = ExtResource("1_j7ehf")
-jump_cut_multiplier = 0.3
+jump_velocity = -600.0
 
 [node name="Icon" type="Sprite2D" parent="."]
-scale = Vector2(0.39375, 0.39375)
+scale = Vector2(0.1875, 0.5625)
 texture = ExtResource("2_wr4n5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_184ao")
 
 [node name="Bouncer" type="RigidBody2D" parent="."]
-position = Vector2(0, -55)
+position = Vector2(0, -43)
 collision_mask = 2
-mass = 1.221
+mass = 15.0
 gravity_scale = 0.0
+continuous_cd = 2
 script = ExtResource("3_ao4j0")
+spring_strength = 700.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Bouncer"]
-scale = Vector2(0.988227, 0.146369)
+scale = Vector2(1.10828, 0.226415)
 texture = ExtResource("3_rce5i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bouncer"]
