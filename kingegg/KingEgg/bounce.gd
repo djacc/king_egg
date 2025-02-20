@@ -6,6 +6,7 @@ extends RigidBody2D
 var bouncer: RigidBody2D
 
 func _ready() -> void:
+	add_to_group("egg")
 	multi_cam.add_target(self)
 	linear_damp = 0  # Disable linear damping so velocity is maintained.
 	var char_node = get_node(char_path)
@@ -17,6 +18,7 @@ func _ready() -> void:
 			print("Bouncer not found in Char!")
 	else:
 		print("Char not found!")
+
 
 
 func _physics_process(delta: float) -> void:

@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @onready var multi_cam = $"../MultiCam"
 
-@export var speed: float = 400.0
+@export var speed: float = 600.0
 @export var jump_velocity: float = -550.0
 @export var normal_fall_speed: float = 2300  # Gravity (pixels per second squared)
 @export var fall_multiplier: float = 5
@@ -19,6 +19,7 @@ var last_horizontal_direction: int = 0  # -1 for left, 1 for right
 @onready var king_egg = $"../KingEgg"
 
 func _ready():
+	add_to_group("player")
 	multi_cam.add_target(self)
 	add_collision_exception_with(king_egg)
 
