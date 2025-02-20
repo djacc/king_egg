@@ -1,0 +1,84 @@
+[gd_scene load_steps=9 format=4 uid="uid://bitibjq42gxrg"]
+
+[ext_resource type="Texture2D" uid="uid://i747prx7beds" path="res://PlaceholderAssets/Screenshot 2025-02-16 at 13.48.13.png" id="1_25pei"]
+[ext_resource type="PackedScene" uid="uid://ddccl1pdkg44s" path="res://Player/Player.tscn" id="2_ogqwi"]
+[ext_resource type="PackedScene" uid="uid://c0h42i7i8qocu" path="res://KingEgg/king_egg.tscn" id="3_r5mlq"]
+[ext_resource type="Texture2D" uid="uid://cu56f5sonjin0" path="res://PlaceholderAssets/Tilemap32_placeholder.png" id="4_ikb4x"]
+[ext_resource type="Script" path="res://Player/camera.gd" id="5_ti3ra"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7j1ch"]
+size = Vector2(158, 52)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ss80x"]
+texture = ExtResource("4_ikb4x")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-11.0873, -11.4653, 16, -11.5913, 16, 16, -11.4653, 16)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -11.8433, 16, -11.5913, 16, 16, -16, 16)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 16, -16, -11.2133, 11.3393, -11.0873, 11.7173, 16)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 16, -16, -10.9613, -10.8353, -11.0873, -11.0873, -16, 16, -16, 16, 16)
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 10.9613, -16, 11.0873, -10.8353, 16, -11.0873, 16, 16, -16, 16)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-11.3393, -16, 16, -16, 16, 16, -11.4653, 16)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 11.2133, -16, 11.2133, 16, -16, 16)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(16, 16, -10.9613, 16, -11.0873, 10.8353, -16, 11.0873, -16, -16, 16, -16)
+4:1/0 = 0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(16, -16, 16, 10.9613, 10.8353, 11.0873, 11.0873, 16, -16, 16, -16, -16)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(16, -16, 16, 11.2133, -11.3393, 11.0873, -11.7173, -16)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, -16, 11.2133, 16, 11.2133, 16, -16)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 11.2133, -16, 11.0873, 11.3393, -16, 11.7173)
+
+[sub_resource type="TileSet" id="TileSet_sphef"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_ss80x")
+
+[node name="Level_2" type="Node2D"]
+
+[node name="Goal" type="Area2D" parent="."]
+position = Vector2(1044, 159)
+
+[node name="Sprite2D" type="Sprite2D" parent="Goal"]
+scale = Vector2(0.445682, 0.17301)
+texture = ExtResource("1_25pei")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
+shape = SubResource("RectangleShape2D_7j1ch")
+
+[node name="Char" parent="." instance=ExtResource("2_ogqwi")]
+position = Vector2(560, 343)
+
+[node name="KingEgg" parent="." instance=ExtResource("3_r5mlq")]
+position = Vector2(573, 126)
+char_path = NodePath("../Char")
+
+[node name="Tilemaps" type="Node2D" parent="."]
+
+[node name="Ground" type="TileMapLayer" parent="Tilemaps"]
+position = Vector2(36, -59)
+tile_map_data = PackedByteArray("AAAGAA8AAAABAAEAAAAHAA8AAAABAAEAAAAIAA8AAAABAAEAAAAJAA8AAAABAAEAAAAKAA8AAAABAAEAAAALAA8AAAABAAEAAAAMAA8AAAABAAEAAAANAA8AAAABAAEAAAAOAA8AAAABAAEAAAAPAA8AAAABAAEAAAAQAA8AAAABAAEAAAARAA8AAAABAAEAAAASAA8AAAABAAEAAAATAA8AAAABAAEAAAAUAA8AAAABAAEAAAAVAA8AAAABAAEAAAAWAA8AAAABAAEAAAAXAA8AAAABAAEAAAAYAA8AAAABAAEAAAAZAA8AAAABAAEAAAAaAA8AAAABAAEAAAAbAA8AAAABAAEAAAAcAA8AAAABAAEAAAAdAA8AAAABAAEAAAAeAA8AAAABAAEAAAAfAA8AAAABAAEAAAAgAA8AAAABAAEAAAAhAA8AAAABAAEAAAAiAA8AAAABAAEAAAAjAA8AAAABAAEAAAAkAA8AAAABAAEAAAA=")
+tile_set = SubResource("TileSet_sphef")
+
+[node name="TutorialText" type="Label" parent="."]
+offset_left = 356.0
+offset_top = 201.0
+offset_right = 500.0
+offset_bottom = 250.0
+text = "WASD - Movement
+Left, Right - tilt"
+
+[node name="MultiCam" type="Camera2D" parent="."]
+script = ExtResource("5_ti3ra")
+
+[connection signal="body_entered" from="Goal" to="KingEgg" method="_on_goal_body_entered"]

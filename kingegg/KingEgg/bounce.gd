@@ -2,10 +2,18 @@ extends RigidBody2D
 
 @onready var multi_cam = $"../MultiCam"
 
+
 @export var char_path: NodePath
 var bouncer: RigidBody2D
 
+	
+
+
+
 func _ready() -> void:
+	add_to_group("goal_area")
+	body_entered.connect(Callable(self, "_on_body_entered"))
+	
 	add_to_group("egg")
 	multi_cam.add_target(self)
 	linear_damp = 0  # Disable linear damping so velocity is maintained.
@@ -45,3 +53,13 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			#linear_velocity = -bounce_dir * 300
 		#else:
 			#linear_velocity = -bounce_dir * 150
+
+signal goal_met
+
+
+func _on_goal_body_entered(body):
+	if body == self:
+		print("EGG ENTERED GOAL")
+		emit_signal("goal_met")
+
+		
