@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c0h42i7i8qocu"]
+[gd_scene load_steps=7 format=3 uid="uid://c0h42i7i8qocu"]
 
 [ext_resource type="Script" path="res://KingEgg/bounce.gd" id="1_vbjv2"]
 [ext_resource type="Texture2D" uid="uid://oolkiifw34su" path="res://Player/KingEgg.png" id="2_am8wv"]
 [ext_resource type="AudioStream" uid="uid://ilvpmtkdlmol" path="res://KingEgg/boing.mp3" id="3_puqhf"]
+[ext_resource type="Script" path="res://MainScene/game_events.gd" id="4_1xara"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x0aeu"]
 radius = 44.0
@@ -46,6 +47,10 @@ shape = SubResource("CapsuleShape2D_s7r2p")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
+one_shot = true
+
+[node name="GameEvents" type="Node" parent="."]
+script = ExtResource("4_1xara")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="break_the_egg" from="." to="." method="_on_break_the_egg"]

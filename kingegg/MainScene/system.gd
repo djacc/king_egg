@@ -1,8 +1,6 @@
 extends Node
 
 signal gamecloser
-
-# Track the current level number; assume we start at Level_1.
 var current_level_number: int = 1
 
 func _input(event: InputEvent) -> void:
@@ -14,15 +12,16 @@ func _input(event: InputEvent) -> void:
 		get_tree().reload_current_scene()
 
 func _ready():
-	# Count total levels by checking sequentially until a level file does not exist.
+	GameEvents.connect("reload_current_level", Callable(self, "reload_current_level"))
 	var total_levels = 0
 	while ResourceLoader.exists("res://Levels/level_%d.tscn" % (total_levels + 1), "PackedScene"):
 		total_levels += 1
 	print("Total levels available: %d" % total_levels)
 	
-	# Connect any goal area already present.
-	_connect_goal_area()
-
+	
+	
+	
+	
 
 func _connect_goal_area() -> void:
 	var goal_areas = get_tree().get_nodes_in_group("goal_area")
@@ -36,32 +35,38 @@ func _connect_goal_area() -> void:
 	else:
 		print("No goal area found in group 'goal_area' in current level!")
 
-
-
 func _on_goal_met() -> void:
 	print("Goal has been met! Ready for switching to level %d." % (current_level_number + 1))
 	_switch_to_next_level()
 	$"../WinSound".play()
 
 func _switch_to_next_level() -> void:
-	# Assume that the main scene has the current level as a child named "Level_N".
-	var main_scene = get_parent()
-	var current_level_node = main_scene.get_node_or_null("Level_%d" % current_level_number)
+	var main_scene = self
+	
+	var current_level_path = "res://Levels/level_%d.tscn" % current_level_number
+	var current_level_node = main_scene.get_node("Level_%d" % current_level_number)
+
 	if current_level_node:
-		# Remove the current level safely.
 		current_level_node.call_deferred("queue_free")
+		print("Removed Level_%d." % current_level_number)
 	else:
 		print("Current level 'Level_%d' not found!" % current_level_number)
 	
-	# Determine the next level number.
+	# Determine the next level number and file path.
 	var next_level_number = current_level_number + 1
 	var next_level_path = "res://Levels/level_%d.tscn" % next_level_number
 	
-	# Check if the next level scene exists.
+	# Check if the next level scene file exists.
 	if not ResourceLoader.exists(next_level_path, "PackedScene"):
 		print("No more levels. Game completed.")
+		var endScreenScene = load("res://MainScene/end_screen.tscn")
+		if endScreenScene:
+			var endScreenInstance = endScreenScene.instantiate()
+			add_child(endScreenInstance)
+		else:
+			print("Error: Could not load end screen scene!")
 		return
-	
+
 	var next_level_scene = load(next_level_path)
 	if next_level_scene == null:
 		print("Error: Could not load next level scene from: ", next_level_path)
@@ -70,12 +75,39 @@ func _switch_to_next_level() -> void:
 	var next_level_instance = next_level_scene.instantiate()
 	next_level_instance.name = "Level_%d" % next_level_number
 	
-	# Add the new level to the main scene using a deferred call.
 	main_scene.call_deferred("add_child", next_level_instance)
 	
-	# Update the current level number.
 	current_level_number = next_level_number
 	print("Switched to Level_%d." % current_level_number)
 	
-	# Now that a new level is added, reconnect its goal area signal.
 	call_deferred("_connect_goal_area")
+
+@onready var canvas_layer = $"../CanvasLayer"
+func _on_button_pressed():
+	var level1_scene = load("res://Levels/level_1.tscn")
+	if level1_scene:
+		var level1_instance = level1_scene.instantiate()
+		level1_instance.name = "Level_1"
+		add_child(level1_instance)
+		print("Instantiated Level_1.")
+		_connect_goal_area()
+	else:
+		print("Error: Could not load Level_1 scene!")
+	canvas_layer.queue_free()
+
+
+func reload_current_level():
+	# Remove old level
+	var node = get_node_or_null("Level_%d" % current_level_number)
+	if node:
+		node.queue_free()
+	
+	# Wait one frame so removal is processed.
+	await get_tree().create_timer(0).timeout
+	
+	# Now add the new node.
+	var level_scene = load("res://Levels/level_%d.tscn" % current_level_number)
+	var new_level_instance = level_scene.instantiate()
+	new_level_instance.name = "Level_%d" % current_level_number
+	add_child(new_level_instance)
+	_connect_goal_area()

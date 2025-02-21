@@ -1,12 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwebbrnft16ff"]
+[gd_scene load_steps=5 format=3 uid="uid://bwebbrnft16ff"]
 
-[ext_resource type="PackedScene" uid="uid://77paj6yvtwf" path="res://Levels/level_1.tscn" id="1_m0vi0"]
+[ext_resource type="Texture2D" uid="uid://cps18oac4nbue" path="res://PlaceholderAssets/Enemy.png" id="3_cyhqe"]
 [ext_resource type="AudioStream" uid="uid://d4kfyeqptgbyh" path="res://MainScene/win_sound.wav" id="4_hdf1y"]
+[ext_resource type="Texture2D" uid="uid://oolkiifw34su" path="res://Player/KingEgg.png" id="4_kveuu"]
 [ext_resource type="Script" path="res://MainScene/system.gd" id="5_lcmf6"]
 
 [node name="MainScene" type="Node2D"]
-
-[node name="Level_1" parent="." instance=ExtResource("1_m0vi0")]
 
 [node name="System" type="Node" parent="."]
 script = ExtResource("5_lcmf6")
@@ -14,3 +13,33 @@ script = ExtResource("5_lcmf6")
 [node name="WinSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_hdf1y")
 volume_db = -2.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Enemy" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(986, 518)
+scale = Vector2(3.06977, 3.06977)
+texture = ExtResource("3_cyhqe")
+
+[node name="KingEgg" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(221, 580)
+scale = Vector2(0.837838, 0.837838)
+texture = ExtResource("4_kveuu")
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_left = 457.0
+offset_top = 335.0
+offset_right = 708.0
+offset_bottom = 483.0
+theme_override_font_sizes/font_size = 36
+text = "PLAY"
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 342.0
+offset_top = 90.0
+offset_right = 835.0
+offset_bottom = 257.0
+theme_override_font_sizes/font_size = 122
+text = "King Egg"
+
+[connection signal="pressed" from="CanvasLayer/Button" to="System" method="_on_button_pressed"]
