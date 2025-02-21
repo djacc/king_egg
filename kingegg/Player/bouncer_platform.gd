@@ -21,10 +21,15 @@ func _physics_process(delta: float) -> void:
 	# Set extra_spin based on input: fixed offset if pressed; otherwise, 0.
 	if Input.is_action_pressed("spin_stab_clockwise"):
 		extra_spin = deg_to_rad(fixed_spin_degrees)
+		
 	elif Input.is_action_pressed("spin_stab_counter_clockwise"):
 		extra_spin = deg_to_rad(-fixed_spin_degrees)
 	else:
 		extra_spin = 0.0
+	if Input.is_action_just_pressed("spin_stab_clockwise"):
+		$"../Audio/TiltBouncer".play()
+	elif Input.is_action_just_pressed("spin_stab_counter_clockwise"):
+		$"../Audio/TiltBouncer".play()
 	
 	# Follow the target position (character + offset) using spring physics.
 	var target: Vector2 = get_parent().global_position + target_offset

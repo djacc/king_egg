@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c0h42i7i8qocu"]
+[gd_scene load_steps=6 format=3 uid="uid://c0h42i7i8qocu"]
 
 [ext_resource type="Script" path="res://KingEgg/bounce.gd" id="1_vbjv2"]
-[ext_resource type="Texture2D" uid="uid://j5b11py3jnba" path="res://KingEgg/ballBlue_10.png" id="2_44auq"]
+[ext_resource type="Texture2D" uid="uid://oolkiifw34su" path="res://Player/KingEgg.png" id="2_am8wv"]
+[ext_resource type="AudioStream" uid="uid://ilvpmtkdlmol" path="res://KingEgg/boing.mp3" id="3_puqhf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x0aeu"]
 radius = 44.0
@@ -16,18 +17,33 @@ position = Vector2(545, 337)
 collision_layer = 3
 mass = 10.0
 continuous_cd = 1
+contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_vbjv2")
 
+[node name="VelocityIndicator" type="Label" parent="."]
+offset_left = 46.0
+offset_top = -88.0
+offset_right = 166.0
+offset_bottom = -65.0
+text = "egg speed"
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.608108, 0.810811)
-texture = ExtResource("2_44auq")
+position = Vector2(0, -7)
+scale = Vector2(0.207207, 0.211656)
+texture = ExtResource("2_am8wv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_x0aeu")
+
+[node name="BounceSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_puqhf")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CapsuleShape2D_s7r2p")
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="break_the_egg" from="." to="." method="_on_break_the_egg"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

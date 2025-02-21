@@ -48,10 +48,11 @@ func handle_jump() -> void:
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
 			velocity.y = jump_velocity
+			$Audio/JumpSingle.play()
 		elif jumps_remaining > 0:
 			velocity.y = jump_velocity
 			jumps_remaining -= 1
-	
+			$Audio/JumpDouble.play()
 	# Note: The jump cut logic is removed so that releasing jump won't immediately reduce upward velocity.
 
 func update_horizontal_movement(delta: float) -> void:
@@ -108,3 +109,25 @@ func _on_system_gamecloser():
 	print("jump_velocity: ", jump_velocity)
 	print("normal_fall_speed: ", normal_fall_speed)
 	print("fall_multiplier: ", fall_multiplier)
+
+
+const BROKEN_EGG = preload("res://Player/broken_egg.tscn")
+
+func _on_king_egg_break_the_egg():
+	var broken_instance = BROKEN_EGG.instantiate()
+	
+	broken_instance.position = king_egg.global_position
+	broken_instance.rotation = king_egg.rotation
+	
+	get_parent().add_child(broken_instance)
+	
+	if king_egg.has_node("CollisionShape2D"):
+		king_egg.get_node("CollisionShape2D").queue_free()
+	if king_egg.has_node("Sprite2D"):
+		king_egg.get_node("Sprite2D").queue_free()
+	if king_egg.has_node("Label"):
+		king_egg.get_node("Label").hide()
+	
+	king_egg.sleeping = true      
+	king_egg.linear_velocity = Vector2.ZERO
+	king_egg.gravity_scale = 0

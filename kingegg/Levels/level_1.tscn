@@ -48,6 +48,7 @@ sources/0 = SubResource("TileSetAtlasSource_ss80x")
 
 [node name="Goal" type="Area2D" parent="."]
 position = Vector2(1043, 159)
+scale = Vector2(1, 1.68)
 
 [node name="Sprite2D" type="Sprite2D" parent="Goal"]
 scale = Vector2(0.445682, 0.17301)
@@ -82,3 +83,4 @@ Left, Right - tilt"
 script = ExtResource("5_36ufy")
 
 [connection signal="body_entered" from="Goal" to="KingEgg" method="_on_goal_body_entered"]
+[connection signal="break_the_egg" from="KingEgg" to="Char" method="_on_king_egg_break_the_egg"]

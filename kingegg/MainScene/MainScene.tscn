@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwebbrnft16ff"]
+[gd_scene load_steps=4 format=3 uid="uid://bwebbrnft16ff"]
 
 [ext_resource type="PackedScene" uid="uid://77paj6yvtwf" path="res://Levels/level_1.tscn" id="1_m0vi0"]
+[ext_resource type="AudioStream" uid="uid://d4kfyeqptgbyh" path="res://MainScene/win_sound.wav" id="4_hdf1y"]
 [ext_resource type="Script" path="res://MainScene/system.gd" id="5_lcmf6"]
 
 [node name="MainScene" type="Node2D"]
@@ -9,3 +10,7 @@
 
 [node name="System" type="Node" parent="."]
 script = ExtResource("5_lcmf6")
+
+[node name="WinSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_hdf1y")
+volume_db = -2.0

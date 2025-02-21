@@ -41,6 +41,7 @@ func _connect_goal_area() -> void:
 func _on_goal_met() -> void:
 	print("Goal has been met! Ready for switching to level %d." % (current_level_number + 1))
 	_switch_to_next_level()
+	$"../WinSound".play()
 
 func _switch_to_next_level() -> void:
 	# Assume that the main scene has the current level as a child named "Level_N".
