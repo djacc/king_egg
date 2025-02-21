@@ -36,8 +36,6 @@ func _connect_goal_area() -> void:
 	else:
 		print("No goal area found in group 'goal_area' in current level!")
 
-
-
 func _on_goal_met() -> void:
 	print("Goal has been met! Ready for switching to level %d." % (current_level_number + 1))
 	_switch_to_next_level()
