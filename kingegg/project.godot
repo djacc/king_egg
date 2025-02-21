@@ -78,4 +78,4 @@ place_box={
 
 [rendering]
 
-environment/defaults/default_clear_color=Color(0.225591, 0.151836, 0.385094, 1)
+environment/defaults/default_clear_color=Color(0.0645913, 0.818288, 1, 1)

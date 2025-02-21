@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ysjm1qpjobjv"
-path="res://.godot/imported/KingEgg.png-7cc6bfef847c8175164f7efa4493988b.ctex"
+uid="uid://dk1p7bby4qpx4"
+path="res://.godot/imported/clouds.png-eef4bba2fc980e5962d34ed84ea913f3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/KingEgg.png"
-dest_files=["res://.godot/imported/KingEgg.png-7cc6bfef847c8175164f7efa4493988b.ctex"]
+source_file="res://PlaceholderAssets/clouds.png"
+dest_files=["res://.godot/imported/clouds.png-eef4bba2fc980e5962d34ed84ea913f3.ctex"]
 
 [params]
 

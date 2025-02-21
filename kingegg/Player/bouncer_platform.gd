@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 @export var follow_speed: float = 600.0
-@export var target_offset: Vector2 = Vector2(0, -30)
+@export var target_offset: Vector2 = Vector2(0, -60)
 @export var spring_strength: float = 300.0 
 @export var damping: float = 5
 @export var min_velocity_threshold: float = 5.0 

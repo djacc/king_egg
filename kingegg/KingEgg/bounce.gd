@@ -87,11 +87,13 @@ func _on_timer_timeout():
 
 
 
+@onready var egg_crack = $EggCrack
 
 func _on_body_entered(body):
 	if body is TileMapLayer:
 		if last_velocity.y > egg_break_cap:
 			print("break the egg")
+			egg_crack.play()
 			break_the_egg.emit()
 			egg_exists = false
 			timer.start()

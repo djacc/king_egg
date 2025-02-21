@@ -1,6 +1,6 @@
-[gd_scene load_steps=12 format=4 uid="uid://77paj6yvtwf"]
+[gd_scene load_steps=13 format=4 uid="uid://77paj6yvtwf"]
 
-
+[ext_resource type="Texture2D" uid="uid://xdnuo8ypn2n7" path="res://PlaceholderAssets/city_runner.png" id="1_6dgd6"]
 [ext_resource type="Texture2D" uid="uid://i747prx7beds" path="res://PlaceholderAssets/Screenshot 2025-02-16 at 13.48.13.png" id="1_nqx5u"]
 [ext_resource type="PackedScene" uid="uid://ddccl1pdkg44s" path="res://Player/Player.tscn" id="2_in6hy"]
 [ext_resource type="PackedScene" uid="uid://c0h42i7i8qocu" path="res://KingEgg/king_egg.tscn" id="3_0eg8s"]
@@ -47,12 +47,15 @@ tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ss80x")
 
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2vva1"]
 size = Vector2(322, 20)
 
-
 [node name="Level_1" type="Node2D"]
+
+[node name="CityRunner" type="Sprite2D" parent="."]
+position = Vector2(1653, 283)
+scale = Vector2(1.81201, 1.81201)
+texture = ExtResource("1_6dgd6")
 
 [node name="Goal" type="Area2D" parent="."]
 position = Vector2(1009, 97)
@@ -90,9 +93,8 @@ Left, Right - tilt"
 [node name="MultiCam" type="Camera2D" parent="."]
 script = ExtResource("5_36ufy")
 
-
 [node name="Enemy" parent="." instance=ExtResource("6_xol77")]
-position = Vector2(216, 441)
+position = Vector2(836, 350)
 
 [node name="DangerZone" parent="." instance=ExtResource("7_hylmh")]
 position = Vector2(131, 489)
@@ -100,7 +102,6 @@ position = Vector2(131, 489)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DangerZone"]
 position = Vector2(95, 0)
 shape = SubResource("RectangleShape2D_2vva1")
-
 
 [connection signal="body_entered" from="Goal" to="KingEgg" method="_on_goal_body_entered"]
 [connection signal="break_the_egg" from="KingEgg" to="Char" method="_on_king_egg_break_the_egg"]

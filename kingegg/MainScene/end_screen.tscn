@@ -1,19 +1,52 @@
-[gd_scene load_steps=2 format=3 uid="uid://ddi55jpvyq41b"]
+[gd_scene load_steps=8 format=3 uid="uid://ddi55jpvyq41b"]
 
-[ext_resource type="Texture2D" uid="uid://oolkiifw34su" path="res://Player/KingEgg.png" id="1_7faig"]
+[ext_resource type="Texture2D" uid="uid://ysjm1qpjobjv" path="res://Player/KingEgg.png" id="1_7faig"]
+[ext_resource type="Script" path="res://MainScene/end_screen.gd" id="1_d6hes"]
+[ext_resource type="Texture2D" uid="uid://dcqq8amfypfof" path="res://PlaceholderAssets/hands-1940248_960_720.webp" id="2_8i8hj"]
+[ext_resource type="Texture2D" uid="uid://rapi7f0d0d6q" path="res://PlaceholderAssets/MachoMarco.png" id="2_x7yyi"]
+[ext_resource type="Texture2D" uid="uid://cps18oac4nbue" path="res://PlaceholderAssets/Enemy.png" id="3_2cm6b"]
+[ext_resource type="Texture2D" uid="uid://hgoc7gushbqx" path="res://PlaceholderAssets/liege.png" id="3_yudnl"]
+[ext_resource type="AudioStream" uid="uid://7lor22p2ce6q" path="res://PlaceholderAssets/trumpet_win.mp3" id="5_odsgv"]
 
 [node name="EndScreen" type="Node2D"]
+script = ExtResource("1_d6hes")
+
+[node name="MachoMarco" type="Sprite2D" parent="."]
+position = Vector2(879.75, 605.25)
+rotation = -0.000732932
+scale = Vector2(0.650292, 0.650292)
+texture = ExtResource("2_x7yyi")
+
+[node name="Liege" type="Sprite2D" parent="."]
+position = Vector2(877, 297)
+rotation = -0.000732932
+texture = ExtResource("3_yudnl")
 
 [node name="Kingegg" type="Sprite2D" parent="."]
-position = Vector2(327, 462)
+position = Vector2(254.601, 326.451)
 scale = Vector2(0.792793, 0.792793)
 texture = ExtResource("1_7faig")
 
 [node name="Label" type="Label" parent="."]
-offset_left = 519.0
-offset_top = 77.0
-offset_right = 1058.0
-offset_bottom = 286.0
+offset_left = 571.0
+offset_top = 86.0
+offset_right = 1110.0
+offset_bottom = 295.0
+rotation = -0.0109086
 theme_override_font_sizes/font_size = 75
 text = "King Egg says:
 \"THANK YOU!\" "
+
+[node name="Hands-1940248960720" type="Sprite2D" parent="."]
+position = Vector2(275.601, 471)
+scale = Vector2(0.436669, 0.436669)
+texture = ExtResource("2_8i8hj")
+
+[node name="Enemy" type="Sprite2D" parent="."]
+position = Vector2(306, 545)
+scale = Vector2(2.60465, 2.60465)
+texture = ExtResource("3_2cm6b")
+
+[node name="FinalWin" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_odsgv")
+volume_db = -4.249

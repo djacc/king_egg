@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ysjm1qpjobjv"
-path="res://.godot/imported/KingEgg.png-7cc6bfef847c8175164f7efa4493988b.ctex"
+uid="uid://b1ob0wdfrume5"
+path="res://.godot/imported/cool_sun.png-ef47040db3f1c379c6cf9b70253ecf3d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/KingEgg.png"
-dest_files=["res://.godot/imported/KingEgg.png-7cc6bfef847c8175164f7efa4493988b.ctex"]
+source_file="res://PlaceholderAssets/cool_sun.png"
+dest_files=["res://.godot/imported/cool_sun.png-ef47040db3f1c379c6cf9b70253ecf3d.ctex"]
 
 [params]
 

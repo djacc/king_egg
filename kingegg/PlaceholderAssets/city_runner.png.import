@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ysjm1qpjobjv"
-path="res://.godot/imported/KingEgg.png-7cc6bfef847c8175164f7efa4493988b.ctex"
+uid="uid://xdnuo8ypn2n7"
+path="res://.godot/imported/city_runner.png-f9d6ce24aa900799412fc4d77b8998c3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/KingEgg.png"
-dest_files=["res://.godot/imported/KingEgg.png-7cc6bfef847c8175164f7efa4493988b.ctex"]
+source_file="res://PlaceholderAssets/city_runner.png"
+dest_files=["res://.godot/imported/city_runner.png-f9d6ce24aa900799412fc4d77b8998c3.ctex"]
 
 [params]
 

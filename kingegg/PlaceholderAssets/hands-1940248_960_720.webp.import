@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pvl8nf4lctod"
-path="res://.godot/imported/BorkenEgg_Bot.png-7099a94fb7dd5c2f249753ae9aafa82c.ctex"
+uid="uid://dcqq8amfypfof"
+path="res://.godot/imported/hands-1940248_960_720.webp-89a475628772bb97c6a8279a7052cc40.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/BorkenEgg_Bot.png"
-dest_files=["res://.godot/imported/BorkenEgg_Bot.png-7099a94fb7dd5c2f249753ae9aafa82c.ctex"]
+source_file="res://PlaceholderAssets/hands-1940248_960_720.webp"
+dest_files=["res://.godot/imported/hands-1940248_960_720.webp-89a475628772bb97c6a8279a7052cc40.ctex"]
 
 [params]
 

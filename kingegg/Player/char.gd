@@ -17,6 +17,7 @@ var jumps_remaining: int = 0
 var last_horizontal_direction: int = 0  # -1 for left, 1 for right
 
 @onready var king_egg = $"../KingEgg"
+@onready var animation_player = $AnimationPlayer
 
 func _ready():
 	add_to_group("player")
@@ -29,6 +30,7 @@ func _input(event):
 		last_horizontal_direction = -1
 	elif event.is_action_pressed("right"):
 		last_horizontal_direction = 1
+		
 
 func apply_gravity(delta: float) -> void:
 	if not is_on_floor():
@@ -52,7 +54,8 @@ func handle_jump() -> void:
 		elif jumps_remaining > 0:
 			velocity.y = jump_velocity
 			jumps_remaining -= 1
-			$Audio/JumpDouble.play()
+			$Audio/JumpSingle.play()
+			#$Audio/JumpDouble.play()
 	# Note: The jump cut logic is removed so that releasing jump won't immediately reduce upward velocity.
 
 func update_horizontal_movement(delta: float) -> void:
@@ -70,10 +73,12 @@ func update_horizontal_movement(delta: float) -> void:
 	
 	# Accelerate or decelerate based on input.
 	if horizontal_direction != 0:
+		animation_player.play("walking")
 		var target_speed: float = horizontal_direction * speed
 		var acceleration_rate: float = speed / acceleration_time
 		velocity.x = move_toward(velocity.x, target_speed, acceleration_rate * delta)
 	else:
+		animation_player.play("idle")
 		var deceleration_rate: float = speed / deceleration_time
 		velocity.x = move_toward(velocity.x, 0, deceleration_rate * delta)
 

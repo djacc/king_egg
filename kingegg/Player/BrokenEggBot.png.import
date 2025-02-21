@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ysjm1qpjobjv"
-path="res://.godot/imported/kingegg.png-c2c4141e44f4f8228a60dcf07157deb9.ctex"
+uid="uid://chxu2fxi602ag"
+path="res://.godot/imported/BrokenEggBot.png-8cae49bbd456ab7e69556181db47545a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PlaceholderAssets/kingegg.png"
-dest_files=["res://.godot/imported/kingegg.png-c2c4141e44f4f8228a60dcf07157deb9.ctex"]
+source_file="res://Player/BrokenEggBot.png"
+dest_files=["res://.godot/imported/BrokenEggBot.png-8cae49bbd456ab7e69556181db47545a.ctex"]
 
 [params]
 

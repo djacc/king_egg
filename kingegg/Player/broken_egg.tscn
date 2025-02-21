@@ -1,9 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://dqtaou3kijt4p"]
+[gd_scene load_steps=10 format=3 uid="uid://dqtaou3kijt4p"]
 
-[ext_resource type="Texture2D" uid="uid://ucj1ahax7t1d" path="res://Player/BrokenEgg_Top.png" id="1_3mo2h"]
+[ext_resource type="Script" path="res://Player/egg_inside.gd" id="1_37d26"]
+[ext_resource type="Texture2D" uid="uid://byth2wtm81tv8" path="res://Player/egg_inside.png" id="1_gho23"]
 [ext_resource type="Script" path="res://Player/eggsplosion_left.gd" id="1_hsuhd"]
-[ext_resource type="Texture2D" uid="uid://pvl8nf4lctod" path="res://Player/BorkenEgg_Bot.png" id="2_1r52y"]
+[ext_resource type="Texture2D" uid="uid://b66pw1lbvswvn" path="res://Player/BrokenEggTop.png" id="2_snxfo"]
 [ext_resource type="Script" path="res://Player/eggsplosion_right.gd" id="3_akrnk"]
+[ext_resource type="Texture2D" uid="uid://chxu2fxi602ag" path="res://Player/BrokenEggBot.png" id="4_fegxw"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_ehvwq"]
+a = Vector2(-77, 8)
+b = Vector2(77, 7)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ynqbs"]
 radius = 35.0143
@@ -13,14 +19,27 @@ radius = 33.0606
 
 [node name="BrokenEgg" type="Node2D"]
 
+[node name="EggInside" type="RigidBody2D" parent="."]
+position = Vector2(0, 11)
+script = ExtResource("1_37d26")
+
+[node name="Sprite2D" type="Sprite2D" parent="EggInside"]
+position = Vector2(0, -20)
+scale = Vector2(0.35461, 0.35461)
+texture = ExtResource("1_gho23")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EggInside"]
+position = Vector2(0, -17)
+shape = SubResource("SegmentShape2D_ehvwq")
+
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 continuous_cd = 1
 script = ExtResource("1_hsuhd")
 
 [node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
 position = Vector2(0, -32)
-scale = Vector2(0.202703, 0.196078)
-texture = ExtResource("1_3mo2h")
+scale = Vector2(0.326241, 0.315578)
+texture = ExtResource("2_snxfo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 position = Vector2(0, -29)
@@ -31,9 +50,9 @@ continuous_cd = 1
 script = ExtResource("3_akrnk")
 
 [node name="Sprite2D" type="Sprite2D" parent="RigidBody2D_second"]
-position = Vector2(0, 27)
-scale = Vector2(0.20197, 0.206667)
-texture = ExtResource("2_1r52y")
+position = Vector2(0, 34)
+scale = Vector2(0.331098, 0.338798)
+texture = ExtResource("4_fegxw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D_second"]
 position = Vector2(0, 31)

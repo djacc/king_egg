@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ucj1ahax7t1d"
-path="res://.godot/imported/BrokenEgg_Top.png-52e9612d542c804bf806ae6f48df9106.ctex"
+uid="uid://d1o35nmhf0hy5"
+path="res://.godot/imported/city_scape.png-50d2ac0ee29fe14c0cd797222d082dcc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/BrokenEgg_Top.png"
-dest_files=["res://.godot/imported/BrokenEgg_Top.png-52e9612d542c804bf806ae6f48df9106.ctex"]
+source_file="res://PlaceholderAssets/city_scape.png"
+dest_files=["res://.godot/imported/city_scape.png-50d2ac0ee29fe14c0cd797222d082dcc.ctex"]
 
 [params]
 

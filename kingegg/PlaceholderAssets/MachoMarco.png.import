@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ysjm1qpjobjv"
-path="res://.godot/imported/KingEgg.png-7cc6bfef847c8175164f7efa4493988b.ctex"
+uid="uid://rapi7f0d0d6q"
+path="res://.godot/imported/MachoMarco.png-ba6c3472633e0a7761618a61251da84d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/KingEgg.png"
-dest_files=["res://.godot/imported/KingEgg.png-7cc6bfef847c8175164f7efa4493988b.ctex"]
+source_file="res://PlaceholderAssets/MachoMarco.png"
+dest_files=["res://.godot/imported/MachoMarco.png-ba6c3472633e0a7761618a61251da84d.ctex"]
 
 [params]
 

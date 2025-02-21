@@ -1,18 +1,70 @@
-[gd_scene load_steps=10 format=3 uid="uid://ddccl1pdkg44s"]
+[gd_scene load_steps=13 format=3 uid="uid://ddccl1pdkg44s"]
 
 [ext_resource type="Script" path="res://Player/char.gd" id="1_j7ehf"]
-[ext_resource type="Texture2D" uid="uid://csry7hhujp00f" path="res://icon.svg" id="2_wr4n5"]
+[ext_resource type="Texture2D" uid="uid://d03eru6tdavox" path="res://Player/MachoMovement.png" id="2_b6q1j"]
 [ext_resource type="Script" path="res://Player/bouncer_platform.gd" id="3_ao4j0"]
-[ext_resource type="Texture2D" uid="uid://dkqsvcgtqnxxa" path="res://Player/trage.png" id="4_tvtop"]
-[ext_resource type="AudioStream" uid="uid://dj8s7dg5ih8mj" path="res://Player/jump_single.wav" id="5_va327"]
-[ext_resource type="AudioStream" uid="uid://dhhaeuunsg41u" path="res://Player/jump_double.wav" id="6_63tmb"]
-[ext_resource type="AudioStream" uid="uid://1ragm6oamtfg" path="res://Player/check_this_out.wav" id="7_y08os"]
+[ext_resource type="Texture2D" uid="uid://hgoc7gushbqx" path="res://PlaceholderAssets/liege.png" id="4_7rnj6"]
+[ext_resource type="AudioStream" uid="uid://crvd6rxaxqq3r" path="res://PlaceholderAssets/woah_yeah.wav" id="5_ow78x"]
+[ext_resource type="AudioStream" uid="uid://1ee5alqf73vg" path="res://PlaceholderAssets/second_jump.wav" id="6_nxkm4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_184ao"]
-size = Vector2(26, 36)
+size = Vector2(125, 58)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nrnnx"]
 size = Vector2(176, 12)
+
+[sub_resource type="Animation" id="Animation_f2m67"]
+resource_name = "walking"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_ffpa7"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_c8x78"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8iic6"]
+_data = {
+"RESET": SubResource("Animation_c8x78"),
+"idle": SubResource("Animation_ffpa7"),
+"walking": SubResource("Animation_f2m67")
+}
 
 [node name="Char" type="CharacterBody2D"]
 position = Vector2(560, 394)
@@ -20,16 +72,17 @@ script = ExtResource("1_j7ehf")
 jump_velocity = -600.0
 
 [node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(0, 18.5)
-scale = Vector2(0.1875, 0.273438)
-texture = ExtResource("2_wr4n5")
+position = Vector2(-3, 12)
+scale = Vector2(0.273437, 0.244376)
+texture = ExtResource("2_b6q1j")
+hframes = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 17)
+position = Vector2(-1, 26)
 shape = SubResource("RectangleShape2D_184ao")
 
 [node name="Bouncer" type="RigidBody2D" parent="."]
-position = Vector2(0, -43)
+position = Vector2(0, -55)
 collision_mask = 2
 mass = 15.0
 gravity_scale = 0.0
@@ -38,9 +91,9 @@ script = ExtResource("3_ao4j0")
 spring_strength = 700.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Bouncer"]
-position = Vector2(-0.499989, 15.5)
-scale = Vector2(0.376953, 0.275391)
-texture = ExtResource("4_tvtop")
+position = Vector2(-0.5, 20)
+scale = Vector2(0.284424, 0.207792)
+texture = ExtResource("4_7rnj6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bouncer"]
 position = Vector2(0, 18)
@@ -117,16 +170,21 @@ value = 0.03
 [node name="Audio" type="Node" parent="."]
 
 [node name="JumpSingle" type="AudioStreamPlayer" parent="Audio"]
-stream = ExtResource("5_va327")
-volume_db = -2.0
+stream = ExtResource("5_ow78x")
+volume_db = -20.144
 
 [node name="JumpDouble" type="AudioStreamPlayer" parent="Audio"]
-stream = ExtResource("6_63tmb")
-volume_db = -7.0
+stream = ExtResource("6_nxkm4")
+volume_db = -33.0
 
 [node name="TiltBouncer" type="AudioStreamPlayer" parent="Audio"]
-stream = ExtResource("7_y08os")
-volume_db = -14.77
+stream = ExtResource("6_nxkm4")
+volume_db = -20.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8iic6")
+}
 
 [connection signal="value_changed" from="HUD/MovementControls/VBoxContainer/SpeedSlider" to="." method="_on_speed_slider_value_changed"]
 [connection signal="value_changed" from="HUD/MovementControls/VBoxContainer/JumpVelocitySlider" to="." method="_on_jump_velocity_slider_value_changed"]

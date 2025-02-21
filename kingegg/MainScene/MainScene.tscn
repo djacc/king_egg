@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwebbrnft16ff"]
+[gd_scene load_steps=9 format=3 uid="uid://bwebbrnft16ff"]
 
 [ext_resource type="Texture2D" uid="uid://cps18oac4nbue" path="res://PlaceholderAssets/Enemy.png" id="3_cyhqe"]
 [ext_resource type="AudioStream" uid="uid://d4kfyeqptgbyh" path="res://MainScene/win_sound.wav" id="4_hdf1y"]
-[ext_resource type="Texture2D" uid="uid://oolkiifw34su" path="res://Player/KingEgg.png" id="4_kveuu"]
+[ext_resource type="Texture2D" uid="uid://ysjm1qpjobjv" path="res://Player/KingEgg.png" id="4_kveuu"]
+[ext_resource type="Texture2D" uid="uid://b1ob0wdfrume5" path="res://PlaceholderAssets/cool_sun.png" id="5_772k5"]
+[ext_resource type="Texture2D" uid="uid://dk1p7bby4qpx4" path="res://PlaceholderAssets/clouds.png" id="5_ew64o"]
 [ext_resource type="Script" path="res://MainScene/system.gd" id="5_lcmf6"]
+[ext_resource type="Texture2D" uid="uid://ddv2bc1hf1edx" path="res://PlaceholderAssets/cloud_big.png" id="7_555l4"]
+[ext_resource type="Texture2D" uid="uid://d1o35nmhf0hy5" path="res://PlaceholderAssets/city_scape.png" id="8_3gdgo"]
 
 [node name="MainScene" type="Node2D"]
 
@@ -12,7 +16,7 @@ script = ExtResource("5_lcmf6")
 
 [node name="WinSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_hdf1y")
-volume_db = -2.0
+volume_db = -8.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -41,5 +45,42 @@ offset_right = 835.0
 offset_bottom = 257.0
 theme_override_font_sizes/font_size = 122
 text = "King Egg"
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_ignore_camera_zoom = true
+
+[node name="Sun" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(176, 140)
+motion_scale = Vector2(0, 0)
+
+[node name="CoolSun" type="Sprite2D" parent="ParallaxBackground/Sun"]
+position = Vector2(2, 0)
+texture = ExtResource("5_772k5")
+
+[node name="CloudTop" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(176, 140)
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(1200, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/CloudTop"]
+position = Vector2(403, -26)
+texture = ExtResource("5_ew64o")
+
+[node name="CloudBig" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(176, 140)
+motion_scale = Vector2(0.3, 0.3)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/CloudBig"]
+position = Vector2(883, -169)
+texture = ExtResource("7_555l4")
+
+[node name="CityScape" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(176, 140)
+motion_scale = Vector2(0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/CityScape"]
+position = Vector2(400.125, 390.5)
+scale = Vector2(0.978125, 0.931655)
+texture = ExtResource("8_3gdgo")
 
 [connection signal="pressed" from="CanvasLayer/Button" to="System" method="_on_button_pressed"]

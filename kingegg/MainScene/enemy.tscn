@@ -30,6 +30,6 @@ shape = SubResource("RectangleShape2D_qc7hs")
 
 [node name="EnemyDeath" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_y6e64")
-volume_db = -6.3
+volume_db = -14.826
 
 [connection signal="body_entered" from="CanBeKilled" to="." method="_on_can_be_killed_body_entered"]

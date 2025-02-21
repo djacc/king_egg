@@ -1,17 +1,18 @@
-[gd_scene load_steps=9 format=4 uid="uid://bitibjq42gxrg"]
+[gd_scene load_steps=10 format=4 uid="uid://bitibjq42gxrg"]
 
 [ext_resource type="Texture2D" uid="uid://i747prx7beds" path="res://PlaceholderAssets/Screenshot 2025-02-16 at 13.48.13.png" id="1_25pei"]
 [ext_resource type="PackedScene" uid="uid://ddccl1pdkg44s" path="res://Player/Player.tscn" id="2_ogqwi"]
 [ext_resource type="PackedScene" uid="uid://c0h42i7i8qocu" path="res://KingEgg/king_egg.tscn" id="3_r5mlq"]
 [ext_resource type="Texture2D" uid="uid://cu56f5sonjin0" path="res://PlaceholderAssets/Tilemap32_placeholder.png" id="4_ikb4x"]
 [ext_resource type="Script" path="res://Player/camera.gd" id="5_ti3ra"]
+[ext_resource type="PackedScene" uid="uid://bwss50lm4gv4d" path="res://MainScene/enemy.tscn" id="6_fqtvn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7j1ch"]
 size = Vector2(158, 52)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ss80x"]
 texture = ExtResource("4_ikb4x")
-texture_region_size = Vector2i(32, 32)
+texture_region_size = Vector2i(31, 33)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-11.0873, -11.4653, 16, -11.5913, 16, 16, -11.4653, 16)
 1:0/0 = 0
@@ -81,6 +82,27 @@ Left, Right - tilt"
 
 [node name="MultiCam" type="Camera2D" parent="."]
 script = ExtResource("5_ti3ra")
+
+[node name="Enemy" parent="." instance=ExtResource("6_fqtvn")]
+position = Vector2(1056, 157)
+
+[node name="Enemy2" parent="." instance=ExtResource("6_fqtvn")]
+position = Vector2(969, 291)
+
+[node name="Enemy3" parent="." instance=ExtResource("6_fqtvn")]
+position = Vector2(849, 347)
+
+[node name="Enemy4" parent="." instance=ExtResource("6_fqtvn")]
+position = Vector2(1412, -50)
+
+[node name="Enemy5" parent="." instance=ExtResource("6_fqtvn")]
+position = Vector2(1411, 14)
+
+[node name="Enemy6" parent="." instance=ExtResource("6_fqtvn")]
+position = Vector2(1410, 80)
+
+[node name="Enemy7" parent="." instance=ExtResource("6_fqtvn")]
+position = Vector2(1409, 142)
 
 [connection signal="body_entered" from="Goal" to="KingEgg" method="_on_goal_body_entered"]
 [connection signal="break_the_egg" from="KingEgg" to="Char" method="_on_king_egg_break_the_egg"]
