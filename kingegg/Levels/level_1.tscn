@@ -1,10 +1,12 @@
 [gd_scene load_steps=11 format=4 uid="uid://77paj6yvtwf"]
 
+
 [ext_resource type="Texture2D" uid="uid://i747prx7beds" path="res://PlaceholderAssets/Screenshot 2025-02-16 at 13.48.13.png" id="1_nqx5u"]
 [ext_resource type="PackedScene" uid="uid://ddccl1pdkg44s" path="res://Player/Player.tscn" id="2_in6hy"]
 [ext_resource type="PackedScene" uid="uid://c0h42i7i8qocu" path="res://KingEgg/king_egg.tscn" id="3_0eg8s"]
 [ext_resource type="Texture2D" uid="uid://cu56f5sonjin0" path="res://PlaceholderAssets/Tilemap32_placeholder.png" id="4_88y1w"]
 [ext_resource type="Script" path="res://Player/camera.gd" id="5_36ufy"]
+[ext_resource type="PackedScene" uid="uid://d4bomvxdfb0da" path="res://MainScene/enemy.tscn" id="6_u71uw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7j1ch"]
 size = Vector2(158, 52)
@@ -109,6 +111,12 @@ Left, Right - tilt"
 
 [node name="MultiCam" type="Camera2D" parent="."]
 script = ExtResource("5_36ufy")
+
+[node name="Enemy" parent="." instance=ExtResource("6_u71uw")]
+position = Vector2(111, 445)
+
+[node name="Enemy2" parent="." instance=ExtResource("6_u71uw")]
+position = Vector2(211, 442)
 
 [connection signal="body_entered" from="Goal" to="KingEgg" method="_on_goal_body_entered"]
 [connection signal="break_the_egg" from="KingEgg" to="Char" method="_on_king_egg_break_the_egg"]

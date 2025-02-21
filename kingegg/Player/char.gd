@@ -115,19 +115,19 @@ const BROKEN_EGG = preload("res://Player/broken_egg.tscn")
 
 func _on_king_egg_break_the_egg():
 	var broken_instance = BROKEN_EGG.instantiate()
-	
 	broken_instance.position = king_egg.global_position
 	broken_instance.rotation = king_egg.rotation
 	
-	get_parent().add_child(broken_instance)
+	get_parent().call_deferred("add_child", broken_instance)
 	
 	if king_egg.has_node("CollisionShape2D"):
-		king_egg.get_node("CollisionShape2D").queue_free()
+		king_egg.get_node("CollisionShape2D").call_deferred("queue_free")
 	if king_egg.has_node("Sprite2D"):
-		king_egg.get_node("Sprite2D").queue_free()
+		king_egg.get_node("Sprite2D").call_deferred("queue_free")
 	if king_egg.has_node("Label"):
 		king_egg.get_node("Label").hide()
 	
-	king_egg.sleeping = true      
-	king_egg.linear_velocity = Vector2.ZERO
-	king_egg.gravity_scale = 0
+	# Defer freezing the KingEgg's physics.
+	king_egg.call_deferred("set_sleeping", true)
+	king_egg.call_deferred("set_linear_velocity", Vector2.ZERO)
+	king_egg.call_deferred("set_gravity_scale", 0)
