@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://d4bomvxdfb0da"]
+[gd_scene load_steps=6 format=3 uid="uid://bwss50lm4gv4d"]
 
 [ext_resource type="Script" path="res://Levels/enemy.gd" id="1_mb2hh"]
 [ext_resource type="Texture2D" uid="uid://cps18oac4nbue" path="res://PlaceholderAssets/Enemy.png" id="2_o618t"]
@@ -11,7 +11,7 @@ size = Vector2(82, 56)
 size = Vector2(86, 61)
 
 [node name="Enemy" type="CharacterBody2D"]
-position = Vector2(836, 138)
+position = Vector2(0, -1)
 floor_stop_on_slope = false
 script = ExtResource("1_mb2hh")
 

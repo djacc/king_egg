@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://blpslj6oiwcpg"]
+[gd_scene load_steps=9 format=4 uid="uid://bitibjq42gxrg"]
 
 [ext_resource type="Texture2D" uid="uid://i747prx7beds" path="res://PlaceholderAssets/Screenshot 2025-02-16 at 13.48.13.png" id="1_25pei"]
 [ext_resource type="PackedScene" uid="uid://ddccl1pdkg44s" path="res://Player/Player.tscn" id="2_ogqwi"]
@@ -44,7 +44,7 @@ tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ss80x")
 
-[node name="Level_1" type="Node2D"]
+[node name="Level_2" type="Node2D"]
 
 [node name="Goal" type="Area2D" parent="."]
 position = Vector2(1549, 159)
