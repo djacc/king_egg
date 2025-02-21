@@ -9,10 +9,11 @@ var bouncer: RigidBody2D
 var egg_exists = true
 
 
+
+
 func _ready() -> void:
 	add_to_group("goal_area")
 	#body_entered.connect(Callable(self, "_on_body_entered"))
-	
 	add_to_group("egg")
 	multi_cam.add_target(self)
 	linear_damp = 0  # Disable linear damping so velocity is maintained.
@@ -78,9 +79,14 @@ func _physics_process(delta: float) -> void:
 signal break_the_egg
 
 func _on_timer_timeout():
-	print("time out")
-	get_tree().reload_current_scene()
-	
+	print("Time out")
+	GameEvents.emit_signal("reload_current_level")
+
+
+
+
+
+
 
 func _on_body_entered(body):
 	if body is TileMapLayer:
@@ -89,6 +95,5 @@ func _on_body_entered(body):
 			break_the_egg.emit()
 			egg_exists = false
 			timer.start()
-			
 		elif last_velocity.y <= egg_break_cap:
 			print("egg is fine")

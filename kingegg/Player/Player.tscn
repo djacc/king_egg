@@ -126,7 +126,7 @@ volume_db = -7.0
 
 [node name="TiltBouncer" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("7_y08os")
-volume_db = -8.0
+volume_db = -14.77
 
 [connection signal="value_changed" from="HUD/MovementControls/VBoxContainer/SpeedSlider" to="." method="_on_speed_slider_value_changed"]
 [connection signal="value_changed" from="HUD/MovementControls/VBoxContainer/JumpVelocitySlider" to="." method="_on_jump_velocity_slider_value_changed"]

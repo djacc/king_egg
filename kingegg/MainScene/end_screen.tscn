@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddi55jpvyq41b"]
+
+[ext_resource type="Texture2D" uid="uid://oolkiifw34su" path="res://Player/KingEgg.png" id="1_7faig"]
+
+[node name="EndScreen" type="Node2D"]
+
+[node name="Kingegg" type="Sprite2D" parent="."]
+position = Vector2(327, 462)
+scale = Vector2(0.792793, 0.792793)
+texture = ExtResource("1_7faig")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 519.0
+offset_top = 77.0
+offset_right = 1058.0
+offset_bottom = 286.0
+theme_override_font_sizes/font_size = 75
+text = "King Egg says:
+\"THANK YOU!\" "
