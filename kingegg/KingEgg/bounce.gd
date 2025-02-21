@@ -1,11 +1,12 @@
 extends RigidBody2D
 
 @onready var multi_cam = $"../MultiCam"
+@onready var timer: Timer = $Timer
+
 
 @export var char_path: NodePath
 var bouncer: RigidBody2D
 var egg_exists = true
-	
 
 
 func _ready() -> void:
@@ -26,6 +27,7 @@ func _ready() -> void:
 		print("Char not found!")
 
 
+
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if egg_exists == true:
 		if body == bouncer:
@@ -37,7 +39,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 
 #func _on_area_2d_body_entered(body: Node2D) -> void:
-	#print("Collided with: ", body.name)
+	#print("Collided with: ", body.name)w 
 	#if body.is_in_group("bouncer"):
 		#print("yo")
 	#
@@ -75,11 +77,18 @@ func _physics_process(delta: float) -> void:
 	
 signal break_the_egg
 
+func _on_timer_timeout():
+	print("time out")
+	get_tree().reload_current_scene()
+	
+
 func _on_body_entered(body):
 	if body is TileMapLayer:
 		if last_velocity.y > egg_break_cap:
 			print("break the egg")
 			break_the_egg.emit()
 			egg_exists = false
+			timer.start()
+			
 		elif last_velocity.y <= egg_break_cap:
 			print("egg is fine")
