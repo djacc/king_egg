@@ -81,12 +81,16 @@ func _on_timer_timeout():
 
 signal death(body)
 
+@onready var egg_crack = $EggCrack
+@onready var shock = $Shock
+
 func _on_body_entered(body):
 	if body is TileMapLayer:
 		if last_velocity.y > egg_break_cap:
 			print("break the egg")
 			death.emit("KingEgg")
-			#egg_crack.play()
+			egg_crack.play()
+			shock.play()
 			#break_the_egg.emit()
 			#egg_exists = false
 			#timer.start()

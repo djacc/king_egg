@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bkhyk8uw8nl2"]
+[gd_scene load_steps=4 format=3 uid="uid://bkhyk8uw8nl2"]
 
 [ext_resource type="Texture2D" uid="uid://c7s2lftvk1pup" path="res://PlaceholderAssets/comic/page1.png" id="1_i3sb7"]
 [ext_resource type="Script" path="res://story.gd" id="1_kkm2s"]
+[ext_resource type="AudioStream" uid="uid://by65scdee8378" path="res://PlaceholderAssets/clickSound.wav" id="3_3e2w3"]
 
 [node name="canvasLayer" type="CanvasLayer"]
 script = ExtResource("1_kkm2s")
@@ -17,5 +18,9 @@ offset_top = 595.0
 offset_right = 1149.0
 offset_bottom = 643.0
 text = "NEXT"
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="Button"]
+stream = ExtResource("3_3e2w3")
+volume_db = -20.0
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

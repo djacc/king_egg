@@ -2,6 +2,7 @@ extends Node
 
 signal gamecloser
 var current_level_number: int = 1
+@onready var story_button = $"../ClickSound"
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("escape"):
@@ -9,15 +10,17 @@ func _input(event: InputEvent) -> void:
 		await get_tree().create_timer(0.05).timeout
 		get_tree().quit()
 	elif Input.is_action_just_pressed("respawn"):
-		get_tree().reload_current_scene()
+		#get_tree().reload_current_scene()
+		reload_current_level()
 
 func _ready():
-	GameEvents.connect("reload_current_level", Callable(self, "reload_current_level"))
+	story_button.play()
+	#GameEvents.connect("reload_current_level", Callable(self, "reload_current_level"))
 	var total_levels = 0
 	while ResourceLoader.exists("res://Levels/level_%d.tscn" % (total_levels + 1), "PackedScene"):
 		total_levels += 1
 	print("Total levels available: %d" % total_levels)
-	
+	GameEvents.connect("global_signal", Callable(self, "_on_global_signal"))
 	
 	
 	
@@ -85,7 +88,11 @@ func _switch_to_next_level() -> void:
 @onready var canvas_layer = $"../CanvasLayer"	
 
 
+
 func reload_current_level():
+	
+	
+
 	# Remove old level
 	var node = get_node_or_null("Level_%d" % current_level_number)
 	if node:
@@ -100,9 +107,14 @@ func reload_current_level():
 	new_level_instance.name = "Level_%d" % current_level_number
 	add_child(new_level_instance)
 	_connect_goal_area()
+	print("GET THIS SHIT OUTTA HERE")
+
+func _on_global_signal():
+	reload_current_level()
 
 
 func _on_start_button_pressed() -> void:
+	story_button.play()
 	var level1_scene = load("res://Levels/level_1.tscn")
 	if level1_scene:
 		var level1_instance = level1_scene.instantiate()
@@ -115,6 +127,7 @@ func _on_start_button_pressed() -> void:
 	canvas_layer.queue_free()
 
 func _on_story_button_pressed() -> void:
+	story_button.play()
 	print("story button pressed")
 	var story_scene = preload("res://story.tscn")
 	if story_scene:

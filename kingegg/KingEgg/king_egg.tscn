@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://c0h42i7i8qocu"]
+[gd_scene load_steps=9 format=3 uid="uid://c0h42i7i8qocu"]
 
 [ext_resource type="Script" path="res://KingEgg/bounce.gd" id="1_vbjv2"]
 [ext_resource type="Texture2D" uid="uid://ysjm1qpjobjv" path="res://Player/KingEgg.png" id="2_am8wv"]
 [ext_resource type="AudioStream" uid="uid://ilvpmtkdlmol" path="res://KingEgg/boing.mp3" id="3_puqhf"]
 [ext_resource type="Script" path="res://MainScene/game_events.gd" id="4_1xara"]
 [ext_resource type="AudioStream" uid="uid://bhvkcrhy27fun" path="res://PlaceholderAssets/egg_crack.wav" id="5_omana"]
+[ext_resource type="AudioStream" uid="uid://dt6w5cm23lch8" path="res://PlaceholderAssets/shock.wav" id="6_1o1yi"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x0aeu"]
 radius = 44.0
@@ -57,6 +58,10 @@ script = ExtResource("4_1xara")
 [node name="EggCrack" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_omana")
 volume_db = -4.0
+
+[node name="Shock" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_1o1yi")
+volume_db = -13.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,4 +1,5 @@
 extends CanvasLayer
+@onready var click_sound = $Button/ClickSound
 
 var pages = [
 	"res://PlaceholderAssets/comic/page1.png",
@@ -18,9 +19,11 @@ func _ready() -> void:
 
 
 func _on_button_pressed() -> void:
+	click_sound.play()
 	if count == 3:
 		$Button.text = "FINISH"
 	elif count == 4:
+		
 		get_tree().reload_current_scene()
 		return
 		

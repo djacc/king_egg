@@ -103,7 +103,7 @@ func _on_jump_velocity_slider_value_changed(value):
 	print("jump_velocity: ", value)
 func _on_normal_fall_speed_slider_value_changed(value):
 	normal_fall_speed = value
-	print("normal_fall_speed: ", value)
+	print("normal_fall_$Audio/Shockspeed: ", value)
 func _on_fall_multiplier_slider_value_changed(value):
 	fall_multiplier = value
 	print("fall_multiplier: ", value)
