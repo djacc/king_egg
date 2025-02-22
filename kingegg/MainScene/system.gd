@@ -82,18 +82,7 @@ func _switch_to_next_level() -> void:
 	
 	call_deferred("_connect_goal_area")
 
-@onready var canvas_layer = $"../CanvasLayer"
-func _on_button_pressed():
-	var level1_scene = load("res://Levels/level_1.tscn")
-	if level1_scene:
-		var level1_instance = level1_scene.instantiate()
-		level1_instance.name = "Level_1"
-		add_child(level1_instance)
-		print("Instantiated Level_1.")
-		_connect_goal_area()
-	else:
-		print("Error: Could not load Level_1 scene!")
-	canvas_layer.queue_free()
+@onready var canvas_layer = $"../CanvasLayer"	
 
 
 func reload_current_level():
@@ -111,3 +100,30 @@ func reload_current_level():
 	new_level_instance.name = "Level_%d" % current_level_number
 	add_child(new_level_instance)
 	_connect_goal_area()
+
+
+func _on_start_button_pressed() -> void:
+	var level1_scene = load("res://Levels/level_1.tscn")
+	if level1_scene:
+		var level1_instance = level1_scene.instantiate()
+		level1_instance.name = "Level_1"
+		add_child(level1_instance)
+		print("Instantiated Level_1.")
+		_connect_goal_area()
+	else:
+		print("Error: Could not load Level_1 scene!")
+	canvas_layer.queue_free()
+
+func _on_story_button_pressed() -> void:
+	print("story button pressed")
+	var story_scene = preload("res://story.tscn")
+	if story_scene:
+		var level1_instance = story_scene.instantiate()
+		level1_instance.name = "Story"
+		add_child(level1_instance)
+		print("Instantiated story")
+	else:
+		print("Error: Could not load Level_1 scene!")
+	canvas_layer.queue_free()
+		
+	

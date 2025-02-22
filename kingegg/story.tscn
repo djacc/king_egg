@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkhyk8uw8nl2"]
+
+[ext_resource type="Texture2D" uid="uid://c7s2lftvk1pup" path="res://PlaceholderAssets/comic/page1.png" id="1_i3sb7"]
+[ext_resource type="Script" path="res://story.gd" id="1_kkm2s"]
+
+[node name="canvasLayer" type="CanvasLayer"]
+script = ExtResource("1_kkm2s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(576.5, 324)
+scale = Vector2(0.499566, 0.5)
+texture = ExtResource("1_i3sb7")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 1036.0
+offset_top = 595.0
+offset_right = 1149.0
+offset_bottom = 643.0
+text = "NEXT"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

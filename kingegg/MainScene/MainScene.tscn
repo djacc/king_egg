@@ -30,13 +30,21 @@ position = Vector2(221, 580)
 scale = Vector2(0.837838, 0.837838)
 texture = ExtResource("4_kveuu")
 
-[node name="Button" type="Button" parent="CanvasLayer"]
-offset_left = 457.0
-offset_top = 335.0
-offset_right = 708.0
-offset_bottom = 483.0
+[node name="StartButton" type="Button" parent="CanvasLayer"]
+offset_left = 448.0
+offset_top = 424.0
+offset_right = 707.0
+offset_bottom = 514.0
 theme_override_font_sizes/font_size = 36
 text = "PLAY"
+
+[node name="StoryButton" type="Button" parent="CanvasLayer"]
+offset_left = 448.0
+offset_top = 304.0
+offset_right = 707.0
+offset_bottom = 394.0
+theme_override_font_sizes/font_size = 36
+text = "STORY"
 
 [node name="Label" type="Label" parent="CanvasLayer"]
 offset_left = 342.0
@@ -83,4 +91,7 @@ position = Vector2(400.125, 390.5)
 scale = Vector2(0.978125, 0.931655)
 texture = ExtResource("8_3gdgo")
 
-[connection signal="pressed" from="CanvasLayer/Button" to="System" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/StartButton" to="System" method="_on_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/StartButton" to="System" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/StoryButton" to="System" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/StoryButton" to="System" method="_on_story_button_pressed"]
