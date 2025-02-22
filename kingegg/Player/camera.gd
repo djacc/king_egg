@@ -1,7 +1,7 @@
 extends Camera2D
 
-@export var move_speed = 0.5        # camera position lerp speed
-@export var zoom_speed = 0.25       # camera zoom lerp speed
+@export var move_speed = 0.05        # camera position lerp speed
+@export var zoom_speed = 0.05      # camera zoom lerp speed
 @export var min_zoom = 0.1          # camera won't zoom closer than this
 @export var max_zoom = 5            # camera won't zoom farther than this
 @export var margin = Vector2(400, 200)  # include some buffer area around targets

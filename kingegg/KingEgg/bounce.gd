@@ -75,27 +75,20 @@ func _physics_process(delta: float) -> void:
 	var offset = Vector2(50, -70)
 	velocity_indicator.set_global_position(global_position + offset)
 
-	
-signal break_the_egg
-
 func _on_timer_timeout():
 	print("Time out")
 	GameEvents.emit_signal("reload_current_level")
 
-
-
-
-
-
-@onready var egg_crack = $EggCrack
+signal death(body)
 
 func _on_body_entered(body):
 	if body is TileMapLayer:
 		if last_velocity.y > egg_break_cap:
 			print("break the egg")
-			egg_crack.play()
-			break_the_egg.emit()
-			egg_exists = false
-			timer.start()
+			death.emit("KingEgg")
+			#egg_crack.play()
+			#break_the_egg.emit()
+			#egg_exists = false
+			#timer.start()
 		elif last_velocity.y <= egg_break_cap:
 			print("egg is fine")

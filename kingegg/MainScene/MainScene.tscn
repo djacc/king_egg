@@ -91,7 +91,7 @@ position = Vector2(400.125, 390.5)
 scale = Vector2(0.978125, 0.931655)
 texture = ExtResource("8_3gdgo")
 
-[connection signal="pressed" from="CanvasLayer/StartButton" to="System" method="_on_start_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/StartButton" to="System" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/StartButton" to="System" method="_on_start_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/StoryButton" to="System" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/StoryButton" to="System" method="_on_story_button_pressed"]

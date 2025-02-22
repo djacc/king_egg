@@ -1,25 +1,9 @@
 extends Area2D
 
-signal break_the_egg
-
-@onready var timer: Timer = $Timer
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-func _on_timer_timeout() -> void:
-	get_tree().reload_current_scene()
+signal death(death_type)
 
 func _on_body_entered(body: Node2D) -> void:
-
 	if body.name == "KingEgg":
-		break_the_egg.emit()
-		timer.start()
-
+		death.emit("KingEgg")
 	elif body.name == "Char":
-		timer.start()
+		death.emit("Char")

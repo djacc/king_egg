@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxgcgj5ip0yil"]
+
+[ext_resource type="Script" path="res://visibility_node.gd" id="1_85v4v"]
+
+[node name="visibiltyNode" type="Area2D"]
+script = ExtResource("1_85v4v")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

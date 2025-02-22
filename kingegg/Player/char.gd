@@ -113,18 +113,10 @@ func _on_system_gamecloser():
 	print("speed: ", speed)
 	print("jump_velocity: ", jump_velocity)
 	print("normal_fall_speed: ", normal_fall_speed)
-	print("fall_multiplier: ", fall_multiplier)
-
-
-const BROKEN_EGG = preload("res://Player/broken_egg.tscn")
-
-func _on_king_egg_break_the_egg():
-	break_egg()
-
-func _on_danger_zone_break_the_egg() -> void:
-	break_egg()
 	
-func break_egg():
+const BROKEN_EGG = preload("res://Player/broken_egg.tscn")
+	
+func _on_break_egg():
 	var broken_instance = BROKEN_EGG.instantiate()
 	broken_instance.position = king_egg.global_position
 	broken_instance.rotation = king_egg.rotation
