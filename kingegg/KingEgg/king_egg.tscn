@@ -25,6 +25,7 @@ max_contacts_reported = 1
 script = ExtResource("1_vbjv2")
 
 [node name="VelocityIndicator" type="Label" parent="."]
+visible = false
 offset_left = 46.0
 offset_top = -88.0
 offset_right = 166.0
