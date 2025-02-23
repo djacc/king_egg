@@ -54,7 +54,7 @@ size = Vector2(1470.5, 304.625)
 size = Vector2(637.5, 323.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ccjjx"]
-size = Vector2(202, 186)
+size = Vector2(947, 447)
 
 [node name="Level_1" type="Node2D"]
 script = ExtResource("1_g23tf")
@@ -131,10 +131,10 @@ position = Vector2(3488.25, 132.25)
 shape = SubResource("RectangleShape2D_4yxb6")
 
 [node name="visibiltyNode" parent="." instance=ExtResource("13_4sd6r")]
-position = Vector2(3064, 73)
+position = Vector2(2273, 4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="visibiltyNode"]
-position = Vector2(-2904, -618)
+position = Vector2(-308.5, -106.5)
 shape = SubResource("RectangleShape2D_ccjjx")
 
 [node name="crowd" type="Node2D" parent="."]

@@ -11,6 +11,7 @@ func _input(event: InputEvent) -> void:
 		get_tree().quit()
 	elif Input.is_action_just_pressed("respawn"):
 		#get_tree().reload_current_scene()
+		print(current_level_number)
 		reload_current_level()
 
 func _ready():

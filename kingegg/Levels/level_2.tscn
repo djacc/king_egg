@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://du2hvp8cpvv7l"]
+[gd_scene load_steps=20 format=4 uid="uid://du2hvp8cpvv7l"]
 
 [ext_resource type="Script" path="res://Levels/level_logic.gd" id="1_2yuk8"]
 [ext_resource type="Texture2D" uid="uid://xdnuo8ypn2n7" path="res://PlaceholderAssets/city_runner.png" id="2_1046s"]
@@ -13,7 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://cy64dsequ60f8" path="res://PlaceholderAssets/crowd.png" id="10_qnl1q"]
 [ext_resource type="AudioStream" uid="uid://bhvkcrhy27fun" path="res://PlaceholderAssets/egg_crack.wav" id="11_0gaqf"]
 [ext_resource type="AudioStream" uid="uid://b4swkdxdythw6" path="res://PlaceholderAssets/scream.mp3" id="12_lclff"]
-[ext_resource type="PackedScene" uid="uid://cxgcgj5ip0yil" path="res://visibility_node.tscn" id="13_ot7oq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7j1ch"]
 size = Vector2(194, 89.2867)
@@ -52,9 +51,6 @@ size = Vector2(1470.5, 304.625)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4yxb6"]
 size = Vector2(637.5, 323.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ccjjx"]
-size = Vector2(202, 186)
 
 [node name="Level_1" type="Node2D"]
 script = ExtResource("1_2yuk8")
@@ -137,13 +133,6 @@ shape = SubResource("RectangleShape2D_6ooia")
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="DangerZone"]
 position = Vector2(3488.25, 132.25)
 shape = SubResource("RectangleShape2D_4yxb6")
-
-[node name="visibiltyNode" parent="." instance=ExtResource("13_ot7oq")]
-position = Vector2(3064, 73)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="visibiltyNode"]
-position = Vector2(-2904, -618)
-shape = SubResource("RectangleShape2D_ccjjx")
 
 [node name="crowd" type="Node2D" parent="."]
 position = Vector2(614, 819)
